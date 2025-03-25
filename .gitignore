@@ -6,6 +6,7 @@ venv/
 
 # Jupyter
 .ipynb_checkpoints/
+*generate_model.py
 
 # Node/React
 node_modules/
