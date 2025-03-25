@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+*.pkl
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Node/React
+node_modules/
+build/
+dist/
+
+# VSCode
+.vscode/
