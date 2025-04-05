@@ -1,12 +1,51 @@
+import { useNavigate } from "react-router-dom";
+import axios from "../../../api/axios";
 import { allSymptoms } from "../../utils/symptoms";
 import usePatientData from "./usePatientData";
 
 const PatientData = () => {
-  const { register, errors, isSubmitting, handleSubmit,preview } = usePatientData();
+  const { register, errors, isSubmitting, handleSubmit, preview } =
+    usePatientData();
+  const navigate = useNavigate();
 
-  const onSubmitForm = (data: unknown) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const onSubmitForm = async (data: any) => {
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("age", data.age.toString());
+    formData.append("contactNo", data.contactNo);
 
-    console.log(data);
+    // Symptoms may be array of strings
+    data.symptoms.forEach((symptom: string) => {
+      formData.append("symptoms", symptom);
+    });
+
+    // Image 
+    const file = data.image?.[0]; 
+    if (file) {
+      console.log("Sending image:", file); // Add this line to debug
+      formData.append("image", file);
+    } else {
+      console.warn("No image file found");
+    }
+
+    for (const [key, value] of formData.entries()) {
+      console.log(`${key}:`, value);
+    }
+
+    try {
+      const response = await axios.post("/predict", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      const result = response.data
+
+      
+      navigate('/results', {state: {result}})
+    } catch (error) {
+      console.error("❌ Error submitting:", error);
+    }
   };
 
   return (
@@ -89,11 +128,7 @@ const PatientData = () => {
           className="h-60 bg-gray-300 flex items-center justify-center cursor-pointer rounded "
         >
           {preview ? (
-            <img
-              src={preview}
-              alt="Preview"
-              className="w-full h-full"
-            />
+            <img src={preview} alt="Preview" className="w-full h-full" />
           ) : (
             <span className="text-gray-700 text-sm">Click to upload image</span>
           )}

@@ -1,39 +1,16 @@
 import img from "../assets/placeholderimg.png";
-export const patients = [
+export const patient = [
   {
-    id: 1,
-    name: "Patient 1",
+    id: 123,
+    name: "Peter Syed",
     image: img, // placeholder image
-    details: "details fdsf kjldsh kjsfa sjkfh fkdslaj fsalkdk fjkdsla jfks",
-  },
-  {
-    id: 2,
-    name: "Patient 2",
-    image: img,
-    details: "details",
-  },
-  {
-    id: 3,
-    name: "Patient 3",
-    image: img,
-    details: "details",
-  },
-  {
-    id: 5,
-    name: "Patient 5",
-    image: img,
-    details: "details",
-  },
-  {
-    id: 6,
-    name: "Patient 6",
-    image: img,
-    details: "details",
-  },
-  {
-    id: 4,
-    name: "Patient 4",
-    image: img,
-    details: "details",
+    age: 24,
+    contactNo: 1112223330,
+    imageFilename: "heart_scan",
+    prediction: "Normal",
+    symptoms: "cough, high temperature",
+    mean_val: "123.4",
+    verified: "Yes",
+    clinician_comments: "Patient Is Normal, the prediction is correct!"
   },
 ];

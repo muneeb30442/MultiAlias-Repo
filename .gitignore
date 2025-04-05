@@ -18,3 +18,9 @@ dist/
 
 # SQLite DB
 *.sqlite3
+backend/database/*.sqlite3
+
+# Images & generated CSVs
+model-dev/images/
+backend/uploads/
+

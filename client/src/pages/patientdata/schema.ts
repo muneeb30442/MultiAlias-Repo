@@ -9,17 +9,23 @@ const schema = z.object({
   symptoms: z
     .array(z.string())
     .nonempty({ message: "Please Select A Symptom" }),
-  image: z
-    .custom<FileList>((file) => file instanceof FileList && file.length > 0, {
+  image: z.custom<FileList>(
+    (val) => val instanceof FileList && val.length > 0,
+    {
       message: "Image is required",
-    })
-    .transform((files) => files[0])
-    .refine((file) => file.size <= 2 * 1024 * 1024, {
-      message: "Max file size is 2MB",
-    })
-    .refine((file) => ["image/jpeg", "image/png"].includes(file.type), {
-      message: "Only JPG/PNG files allowed",
-    }),
+    }
+  ),
+  // image: z
+  //   .custom<FileList>((file) => file instanceof FileList && file.length > 0, {
+  //     message: "Image is required",
+  //   })
+  //   .transform((files) => files[0])
+  //   .refine((file) => file.size <= 2 * 1024 * 1024, {
+  //     message: "Max file size is 2MB",
+  //   })
+  //   .refine((file) => ["image/jpeg", "image/png"].includes(file.type), {
+  //     message: "Only JPG/PNG files allowed",
+  //   }),
 });
 
 export default schema;

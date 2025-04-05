@@ -1,44 +1,43 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import LandingLayout from "./Layouts/LandingLayout"
-import LandingPage from "./pages/LandingPage"
-import SignUp from "./pages/signUp/SignUp"
-import SignIn from "./pages/signIn/SignIn"
-import Dashboard from "./pages/Dashboard"
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import LandingLayout from "./Layouts/LandingLayout";
+import LandingPage from "./pages/LandingPage";
+import SignUp from "./pages/signUp/SignUp";
+import SignIn from "./pages/signIn/SignIn";
+import Dashboard from "./pages/Dashboard";
 import PatientData from "./pages/patientdata/PatientData";
+import Result from "./pages/Result";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <LandingLayout/>,
+    element: <LandingLayout />,
     children: [
       {
         index: true,
-        element: <LandingPage/>
+        element: <LandingPage />,
       },
       {
-        path: 'signup',
-        element: <SignUp/>
+        path: "signup",
+        element: <SignUp />,
       },
       {
-        path:'signin',
-        element: <SignIn/>
-      }
-    ]
+        path: "signin",
+        element: <SignIn />,
+      },
+    ],
   },
   {
-    path: 'dashboard',
-    element: <Dashboard/>
+    path: "dashboard",
+    element: <Dashboard />,
   },
   {
-    path: 'patientData',
-    element: <PatientData/>
-  }
-  
-])
+    path: "patientData",
+    element: <PatientData />,
+  },
+  { path: "results", element: <Result /> },
+]);
 
 const App = () => {
-  return (
-    <RouterProvider router={router}/>
-  )
-}
-export default App
+  return <RouterProvider router={router} />;
+};
+export default App;
