@@ -9,7 +9,7 @@ type FormSignInType ={
 }
 
 const SignIn = () => {
-  const { register, errors, isSubmitting, handleSubmit, getValues } =
+  const { register, errors, isSubmitting, handleSubmit } =
     useSignInForm();
   const navigate = useNavigate();
 

@@ -1,11 +1,12 @@
 import { z } from "zod";
 
 const schema = z.object({
-  name: z.string().min(1),
-  age: z.coerce.number().min(18),
+  name: z.string().min(1, "Please Type Your Full Name"),
+  age: z.coerce.number().min(1, "Please enter valid Age"),
   contactNo: z.coerce
     .string()
-    .min(10, "Contact number must be at least 10 digits"),
+    .length(10, "Contact number must be exactly 10 digits")
+    .regex(/^\d+$/, "Contact number must contain only digits"),
   symptoms: z
     .array(z.string())
     .nonempty({ message: "Please Select A Symptom" }),

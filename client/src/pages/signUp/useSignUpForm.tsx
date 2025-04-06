@@ -14,11 +14,7 @@ const useSignUpForm = () => {
     formState,
   } = useForm<SignUpType>({
     resolver: zodResolver(schema),
-    defaultValues: {
-      username: "Syed",
-      email: "zenkop46@gmail.com",
-      password: "12345",
-    },
+    defaultValues: {},
   });
 
   return {

@@ -16,8 +16,8 @@ const SignUp = () => {
     await new Promise<void>((resolve) => {
       return setTimeout(() => resolve(), 1000);
     });
-    console.log(data);
-    toast.success("Registration Successful, Please SignIn");
+    localStorage.setItem('user', JSON.stringify(data.username))
+    toast.success("Registration Successful, Please SignIn!");
     navigate("/signin");
   };
 

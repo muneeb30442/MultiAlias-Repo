@@ -23,6 +23,7 @@ with open(MODEL_PATH, 'rb') as f:
 def save_to_db(name, age, contactNo, mean_val, symptoms, prediction, image_filename):
     conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
+    # c.execute('DROP TABLE IF EXISTS predictions') #use this only when to clean the database locally 
 
     # ✅ Recreate with the correct schema
     c.execute('''CREATE TABLE IF NOT EXISTS predictions (

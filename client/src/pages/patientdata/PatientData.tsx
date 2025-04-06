@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "../../../api/axios";
 import { allSymptoms } from "../../utils/symptoms";
 import usePatientData from "./usePatientData";
+import { toast } from "react-toastify";
 
 const PatientData = () => {
   const { register, errors, isSubmitting, handleSubmit, preview } =
@@ -41,7 +42,7 @@ const PatientData = () => {
       });
       const result = response.data
 
-      
+      toast.success('Successful Prediction!')
       navigate('/results', {state: {result}})
     } catch (error) {
       console.error("❌ Error submitting:", error);

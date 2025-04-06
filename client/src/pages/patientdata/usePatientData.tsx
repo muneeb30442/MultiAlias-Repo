@@ -1,4 +1,4 @@
-import { useForm, useWatch } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import schema from "./schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PatientDataType } from "./patientDataType";
@@ -12,7 +12,7 @@ const usePatientData = () => {
     reset,
     watch,
     handleSubmit,
-    getValues, // for consolling form data
+    getValues, // for consoling form data
     formState: { errors, isSubmitting, isSubmitSuccessful },
     formState,
   } = useForm<PatientDataType>({

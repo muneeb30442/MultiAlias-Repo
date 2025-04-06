@@ -6,11 +6,13 @@ import SignIn from "./pages/signIn/SignIn";
 import Dashboard from "./pages/Dashboard";
 import PatientData from "./pages/patientdata/PatientData";
 import Result from "./pages/Result";
+import Error from "./pages/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <LandingLayout />,
+    errorElement: <Error/>,
     children: [
       {
         index: true,
