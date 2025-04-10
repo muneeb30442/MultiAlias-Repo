@@ -112,7 +112,8 @@ def predict():
             'symptoms': symptoms,
             'prediction': prediction,
             'mean_value': mean_val,
-            'imageFilename': image_filename
+            'imageFilename': image_filename,
+            'mean_val': mean_val
         })
 
     except Exception as e:

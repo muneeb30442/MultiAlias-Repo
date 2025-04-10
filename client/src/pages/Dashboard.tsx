@@ -19,7 +19,7 @@ const Dashboard = () => {
       try {
         const response = await axiosInstance.get("/patients");
         setPatients(response.data);
-        // console.log(response.data)
+        console.log(response.data);
       } catch (error) {
         console.error("Failed to fetch/get patients:", error);
       }
@@ -31,10 +31,10 @@ const Dashboard = () => {
     }
   }, [message]);
 
-  const logout = ()=>{
-    toast.success('Logged OUT!')
-    navigate('/')
-  }
+  const logout = () => {
+    toast.success("Logged OUT!");
+    navigate("/");
+  };
 
   const user = JSON.parse(localStorage.getItem("user") || "{}");
   const avatar = user?.[0].toUpperCase() || "";
@@ -55,9 +55,14 @@ const Dashboard = () => {
               dropDown ? "absolute right-0" : "hidden"
             } border p-2 content-center mt-1 flex flex-col gap-y-2 rounded-xl text-blue-300 border-blue-200 bg-white`}
           >
-            <p className="">{JSON.parse(localStorage.getItem("user") || "")}</p>
+            <p className=" whitespace-nowrap">
+              {JSON.parse(localStorage.getItem("user") || "")}
+            </p>
             <hr />
-            <button className="flex justify-center text-red-400 hover:text-red-600" onClick={()=>logout()}>
+            <button
+              className="flex justify-center text-red-400 hover:text-red-600"
+              onClick={() => logout()}
+            >
               Logout
             </button>
           </div>
@@ -116,45 +121,50 @@ const Dashboard = () => {
         </div>
       </section>
       <p className="text-3xl mb-2">Verified</p>
-      <div
-        key={verified.id}
-        className=" bg-white rounded border-[.5px] shadow flex"
-      >
-        <div className="bg-gray-300 flex items-center justify-center">
-          <img
-            src={verified.image}
-            alt={verified.name}
-            className="h-20 md:h-35"
-          />
-        </div>
-        <div className="p-2 w-2/3">
-          <p className="font-bold text-lg md:text-xl">{verified.name}</p>
-          <p
-            className={`text-sm ${
-              verified.prediction == "Pneumonia"
-                ? "text-red-600"
-                : "text-green-600"
-            }`}
-          >
-            <span className="font-semibold">Prediction:</span>{" "}
-            {verified.prediction}
-          </p>
-          <p className="text-sm">
-            <span className="font-semibold">Symptoms:</span> {verified.symptoms}
-          </p>
-          <p className="text-sm">
-            <span className="font-semibold">Contact:</span> {verified.contactNo}
-          </p>
-          <p className="text-sm">
-            <span className="font-semibold">Age:</span> {verified.age}
-          </p>
-          <p className="text-sm">
-            <span className="font-semibold">Verified:</span> {verified.verified}
-          </p>
-          <p className="text-sm">
-            <span className="font-semibold">Comments:</span>{" "}
-            {verified.clinician_comments}
-          </p>
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 justify-between gap-4">
+        <div
+          key={verified.id}
+          className=" bg-white rounded border-[.5px] shadow flex"
+        >
+          <div className="bg-gray-300 flex items-center justify-center">
+            <img
+              src={verified.image}
+              alt={verified.name}
+              className="h-20 md:h-35"
+            />
+          </div>
+          <div className="p-2 w-2/3">
+            <p className="font-bold text-lg md:text-xl">{verified.name}</p>
+            <p
+              className={`text-sm ${
+                verified.prediction == "Pneumonia"
+                  ? "text-red-600"
+                  : "text-green-600"
+              }`}
+            >
+              <span className="font-semibold">Prediction:</span>{" "}
+              {verified.prediction}
+            </p>
+            <p className="text-sm">
+              <span className="font-semibold">Symptoms:</span>{" "}
+              {verified.symptoms}
+            </p>
+            <p className="text-sm">
+              <span className="font-semibold">Contact:</span>{" "}
+              {verified.contactNo}
+            </p>
+            <p className="text-sm">
+              <span className="font-semibold">Age:</span> {verified.age}
+            </p>
+            <p className="text-sm">
+              <span className="font-semibold">Verified:</span>{" "}
+              {verified.verified}
+            </p>
+            <p className="text-sm">
+              <span className="font-semibold">Comments:</span>{" "}
+              {verified.clinician_comments}
+            </p>
+          </div>
         </div>
       </div>
     </div>
