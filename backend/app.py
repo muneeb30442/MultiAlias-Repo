@@ -15,17 +15,17 @@ CORS(app, origins=["http://localhost:5173"])
 MODEL_PATH = os.path.join('model', 'model.pkl')
 DB_PATH = os.path.join('database', 'db.sqlite3')
 
-# Load AI model
+# Loading AI model
 with open(MODEL_PATH, 'rb') as f:
     model = pickle.load(f)
 
-#Database
+#Database connection
 def save_to_db(name, age, contactNo, mean_val, symptoms, prediction, image_filename):
     conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
-    # c.execute('DROP TABLE IF EXISTS predictions') #use this only when to clean the database locally 
+    c.execute('DROP TABLE IF EXISTS predictions') #use this only when to clean the database locally 
 
-    # ✅ Recreate with the correct schema
+    # ✅ schema
     c.execute('''CREATE TABLE IF NOT EXISTS predictions (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     name TEXT,

@@ -51,7 +51,7 @@ def test_serveImage(client):
         with open(upload_path, 'wb') as out:
             out.write(f.read())
 
-    response = client.get(f'/uploads/{test_image_path}')
+    response = client.get(f'/uploads/{image_filename}')
     assert response.status_code == 200
     os.remove(upload_path) 
 
